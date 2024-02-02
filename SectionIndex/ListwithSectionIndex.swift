@@ -39,9 +39,11 @@ struct ListwithSectionIndex: View {
                             .id(fruits)
                     } // ForEach ここまで
                 } // List ここまで
-                //
+                // 水平方向にレイアウト
                 HStack {
+                    // 右に寄せる
                     Spacer()
+                    // 縦方向にレイアウト
                     VStack {
                         ForEach(alphabet, id: \.self) { letter in
                             Button {
