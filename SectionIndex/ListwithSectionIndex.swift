@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ListwithSectionIndex: View {
+    @State private var selectedLetter: String = ""
     // フルーツのリストを格納する配列
     var fruitsList: [String] = []
     // Viewの右端に縦に並べるアルファベット
@@ -48,13 +49,22 @@ struct ListwithSectionIndex: View {
                         ForEach(alphabet, id: \.self) { letter in
                             Button {
                                 if let foundFruits = findFruits(firstLetter: letter) {
+                                    selectedLetter = letter
                                     proxy.scrollTo(foundFruits, anchor: UnitPoint(x: 0, y: 0))
                                 } // if let ここまで
                             } label: {
                                 // ラベル
                                 Text(letter)
-                                    .font(.system(size: 15))
+                                // フォントサイズを18に指定
+                                    .font(.system(size: 18))
+                                // 右に余白7を指定
                                     .padding(.trailing, 7)
+                                // 背景色を指定
+                                    .background(selectedLetter == letter ? Color.blue : Color.clear)
+                                // 文字の色を指定
+                                    .foregroundStyle(selectedLetter == letter ? Color.white : Color.black)
+                                // 角を丸くする
+                                    .cornerRadius(5)
                             } // Button ここまで
                         } // ForEach ここまで
                     } // VStack ここまで
